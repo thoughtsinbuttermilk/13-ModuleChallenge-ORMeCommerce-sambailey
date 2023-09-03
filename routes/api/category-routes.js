@@ -19,9 +19,11 @@ router.get("/", (req, res) => {
       },
     ],
   })
+  // return all products as JSON objects
     .then((dbProductData) => res.json(dbProductData))
     .catch((err) => {
       console.error(err);
+      // return 500 'server error'
       res.status(500).json(err);
     });
 });
@@ -38,7 +40,7 @@ attributes: ["id", "product_name", "price", "stock"],
 include: [
   {
 model: Category,
-attributes: ["category_name']
+attributes: ["category_name"]
   },
   {
     model: Tag,
@@ -46,6 +48,18 @@ attributes: ["category_name']
   }
 ]
   })
+  .then(dbProductData => {
+    if (!dbProductData) {
+      // return 404 'could not find page, in this case the product
+      res.status(404).json({message: 'product not found'});
+      return;
+    }
+    res.json(dbProductData);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
 
 router.post("/", (req, res) => {
   // create a new category
