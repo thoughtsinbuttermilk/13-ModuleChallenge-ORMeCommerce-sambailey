@@ -8,7 +8,6 @@
 // tag_name
 // String
 
-
 const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection.js");
@@ -18,6 +17,7 @@ class Tag extends Model {}
 Tag.init(
   {
     // define columns
+    // create the attributes for each column of the table
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
