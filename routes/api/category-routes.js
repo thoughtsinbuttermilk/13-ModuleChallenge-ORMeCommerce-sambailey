@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
       },
     ],
   })
-  // return all products as JSON objects
+    // return all products as JSON objects
     .then((dbProductData) => res.json(dbProductData))
     .catch((err) => {
       console.error(err);
@@ -34,31 +34,31 @@ router.get("/:id", (req, res) => {
   // https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
   Product.findOne({
     where: {
-      id: req.params.id
-},
-attributes: ["id", "product_name", "price", "stock"],
-include: [
-  {
-model: Category,
-attributes: ["category_name"]
-  },
-  {
-    model: Tag,
-    attributes: ['tag_name']
-  }
-]
+      id: req.params.id,
+    },
+    attributes: ["id", "product_name", "price", "stock"],
+    include: [
+      {
+        model: Category,
+        attributes: ["category_name"],
+      },
+      {
+        model: Tag,
+        attributes: ["tag_name"],
+      },
+    ],
   })
-  .then(dbProductData => {
-    if (!dbProductData) {
-      // return 404 'could not find page, in this case the product
-      res.status(404).json({message: 'product not found'});
-      return;
-    }
-    res.json(dbProductData);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+    .then((dbProductData) => {
+      if (!dbProductData) {
+        // return 404 'could not find page, in this case the product
+        res.status(404).json({ message: "product not found" });
+        return;
+      }
+      res.json(dbProductData);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 router.post("/", (req, res) => {
