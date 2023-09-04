@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   // be sure to include its associated Category and Tag data
   // sequelize findAll method
   Product.findAll({
-    // list of attributes, properties, to be selected 
+    // list of attributes, properties, to be selected
     attributes: ["id", "product_name", "price", "stock"],
     include: [
       {
@@ -34,6 +34,33 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  Product.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "product_name", "price", "stock"],
+    include: [
+      {
+        model: Category,
+        attributes: ["category_name"],
+      },
+      {
+        model: Tag,
+        attributes: ["tag_name"],
+      },
+    ],
+  })
+    .then((productData) => {
+      if (!productData) {
+        res.status(404).json({ message: "product not found" });
+        return;
+      }
+      res.json(productData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // create new product
@@ -46,6 +73,8 @@ router.post("/", (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
+  // sequelize create method
+  //  https://sequelize.org/docs/v6/core-concepts/model-instances/
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -112,8 +141,26 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// sequelize delete method
+// https://sequelize.org/docs/v6/other-topics/hooks/#hooks-for-cascade-deletes
 router.delete("/:id", (req, res) => {
   // delete one product by its `id` value
+  Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((productData) => {
+      if (!productData) {
+        res.status(404).json({ message: "No product found with this id" });
+        return;
+      }
+      res.json(productData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
