@@ -7,15 +7,13 @@ router.get("/", (req, res) => {
   // find all categories
   // be sure to include its associated Products
   Category.findAll({
-    // create the list of attributes to select
-    attributes: ["id", "product_name", "price, stock"],
-    // basically a left join?
-    include: [
-      {
-        model: Product,
-        attributes: ["product_name"],
-      },
-    ],
+    // find options
+    include: {
+      model: Product,
+      // create the list of attributes to select
+      // basically a left join?
+      attributes: ["id", "product_name", "price", "stock", "category_id"],
+    },
   })
     // return all products as JSON objects
     .then((categoryData) => res.json(categoryData))
