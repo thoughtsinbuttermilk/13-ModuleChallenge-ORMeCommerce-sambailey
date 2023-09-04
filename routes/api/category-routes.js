@@ -6,21 +6,17 @@ const { Category, Product } = require("../../models");
 router.get("/", (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  Product.findAll({
+  Category.findAll({
     attributes: ["id", product_name, "price, stock"],
     include: [
       {
-        model: Category,
-        attributes: ["category_name"],
-      },
-      {
-        model: Tag,
-        attributes: ["tag_name"],
+        model: Product,
+        attributes: ["product_name"],
       },
     ],
   })
     // return all products as JSON objects
-    .then((dbProductData) => res.json(dbProductData))
+    .then((categoryData) => res.json(categoryData))
     .catch((err) => {
       console.error(err);
       // return 500 'server error'
@@ -31,33 +27,19 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
-  // https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
-  Product.findOne({
+  Category.findOne({
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "product_name", "price", "stock"],
-    include: [
-      {
-        model: Category,
-        attributes: ["category_name"],
-      },
-      {
-        model: Tag,
-        attributes: ["tag_name"],
-      },
-    ],
+    include: {
+      model: Product,
+      attributes: ["category_id"],
+    },
   })
-    .then((dbProductData) => {
-      if (!dbProductData) {
-        // return 404 'could not find page, in this case the product
-        res.status(404).json({ message: "product not found" });
-        return;
-      }
-      res.json(dbProductData);
-    })
+    .then((categoryData) => res.json(categoryData))
     .catch((err) => {
       console.log(err);
+      res.status(500).json(err);
     });
 });
 
@@ -65,7 +47,6 @@ router.post("/", (req, res) => {
   // create a new category
   // need to work out what this request will look like
   // this should be helpful:
-  https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
 });
 
 router.put("/:id", (req, res) => {
