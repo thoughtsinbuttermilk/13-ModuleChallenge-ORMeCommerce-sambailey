@@ -63,6 +63,9 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   // create a new category
+  // need to work out what this request will look like
+  // this should be helpful:
+  https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
 });
 
 router.put("/:id", (req, res) => {
