@@ -7,7 +7,9 @@ router.get("/", (req, res) => {
   // find all categories
   // be sure to include its associated Products
   Category.findAll({
-    attributes: ["id", product_name, "price, stock"],
+    // create the list of attributes to select
+    attributes: ["id", "product_name", "price, stock"],
+    // basically a left join?
     include: [
       {
         model: Product,
@@ -27,10 +29,12 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  // https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
   Category.findOne({
     where: {
       id: req.params.id,
     },
+    // include associated products through the category_id attribute
     include: {
       model: Product,
       attributes: ["category_id"],
@@ -46,10 +50,10 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // create a new category
   Category.create({
-    category_name: req.body.category_name
+    category_name: req.body.category_name,
   })
-    .then(categoryData => res.json(categoryData))
-    .catch(err => {
+    .then((categoryData) => res.json(categoryData))
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
