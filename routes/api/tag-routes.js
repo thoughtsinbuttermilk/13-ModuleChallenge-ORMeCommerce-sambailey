@@ -18,6 +18,8 @@ router.get("/", (req, res) => {
     });
 });
 
+// "/:id"
+// resolves to "http://127.0.0.1:3001/api/tags/8" <-- ID 8
 router.get("/:id", (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
