@@ -1,6 +1,6 @@
-# 12 ModuleChallenge EmployeeTracker sambailey
+# 13 Module Challenge ORM eCommerce backend sam bailey
 
-Northwestern Bootcamp challenge week 12
+Northwestern Bootcamp challenge week 13
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -8,13 +8,21 @@ Northwestern Bootcamp challenge week 12
 
 ![javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+
 ![node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
+
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 ![npm](https://img.shields.io/npm/v/npm.svg?logo=npm)
 
+![dotenv](https://img.shields.io/badge/dotenv-8_2._0-blue)
+
 # Table of Contents
 
-- [12 ModuleChallenge EmployeeTracker sambailey](#12-modulechallenge-employeetracker-sambailey)
+- [13 Module Challenge ORM eCommerce backend sam bailey](#13-module-challenge-orm-ecommerce-backend-sam-bailey)
 - [Table of Contents](#table-of-contents)
   - [Project description](#project-description)
   - [Application functionality](#application-functionality)
@@ -26,43 +34,32 @@ Northwestern Bootcamp challenge week 12
 
 ## Project description
 
-The intent of this project was to build a simple, command line interface to an employee database. 
+The goal of this assignment is to build the backend for an e-commerce site. Starter code was provided. Express.js was used to build the working API and sequelize was used to interact with a MySQL database.
 
 ## Application functionality
 
-When the application is run from the command line, the user can:
+After the database schema is loaded and the data seeded, the server is available at http://127.0.0.1:3001 requests can be made to the RESTful API using a GUI like [Insomnia](https://insomnia.rest/) or cURL commands in the terminal.
 
-• view all departments
-
-• view all roles
-
-• view all employees
-
-• add a new department
-
-• add a new role
-
-• add a new employee
-
-• update an employee's role
-
-• remove an employee from the database
-
-• exit the application
-
+***User of the application can:***
+1. Open GET requests to the API and view the database's categories, products and tags
+2. Use POST, PUT and DELETE requests to create, update and delete categories, products and tags
 ## Technology used
 
 The application was built using:
 
 [node.js, v20.5.0](https://nodejs.org/en), an asynchronous, event-driven JavaScript runtime designed to build scalable network applications
 
+[express.js](https://expressjs.com/), a fast, *un-opinionated*, minimalist web framework for node.js 
+
 [MySql, v2.1.0](https://dev.mysql.com/doc/refman/8.1/en/), the world's *most popular* open source database
 
-[npm's inquirer package, v8.2.6](https://www.npmjs.com/package/inquirer), including the list-input feature and maxlength-input method
+[sequelize](https://sequelize.org/), sequelize is a modern TypeScript and Node.js ORM MySQL and other databases
 
-[npm's cfonts package, v3.2.0](https://www.npmjs.com/package/cfonts), a silly little command line tool for *sexy* ANSI fonts in the console
+[dotevn](https://www.npmjs.com/package/dotenv) A module that loads environment variables into process variables
 
-[npm's console table package, v0.10.0](https://www.npmjs.com/package/console.table), supports passing multiple strings and arrays in a single console.table call; each argument will be formatted and printed separately on new line
+[insomnia](https://insomnia.rest/) a GUI that provides an easy to use interface that supports designing, debugging and testiing APIs
+
+[cURL](https://curl.se/), "client URL" command line tools and libraries for transferring data with URLs
 
 ## Installation, usage instructions and known issues
 
