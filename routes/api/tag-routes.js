@@ -60,7 +60,7 @@ router.put("/:id", (req, res) => {
   })
     .then((tagData) => {
       if (!tagData) {
-        res.status(404).json({ message: "tag not found" });
+        res.status(404).json({ message: "tag not found with this id" });
         return;
       }
       res.json(tagData);
@@ -80,7 +80,7 @@ router.delete("/:id", (req, res) => {
   })
     .then((tagData) => {
       if (!tagData) {
-        res.status(404).json({ message: "tag not found" });
+        res.status(404).json({ message: "tag not found with this id" });
         return;
       }
       res.json(tagData);

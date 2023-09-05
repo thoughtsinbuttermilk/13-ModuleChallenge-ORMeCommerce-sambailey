@@ -68,7 +68,28 @@ router.put("/:id", (req, res) => {
   })
     .then((categoryData) => {
       if (!categoryData) {
-        res.status(404).json({ message: "category not found" });
+        res.status(404).json({ message: "category not found with this id" });
+        return;
+      }
+      res.json(categoryData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// BONUS! put for category name update
+router.put("/", (req, res) => {
+  // update a category by its `category_name` value
+  Category.update(req.body, {
+    where: {
+      category_name: req.params.id,
+    },
+  })
+    .then((categoryData) => {
+      if (!categoryData) {
+        res.status(404).json({ message: "category not found with this name" });
         return;
       }
       res.json(categoryData);
@@ -87,8 +108,8 @@ router.delete("/:id", (req, res) => {
     },
   })
     .then((categoryData) => {
-      if (!dbCatData) {
-        res.status(404).json({ message: "category not found" });
+      if (!categoryData) {
+        res.status(404).json({ message: "category not found with this id" });
         return;
       }
       res.json(categoryData);
