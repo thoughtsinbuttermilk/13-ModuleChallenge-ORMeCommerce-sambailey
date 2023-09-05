@@ -45,7 +45,7 @@ After the database schema is loaded and the data seeded, the server is available
 2. Use POST, PUT and DELETE requests to create, update and delete categories, products and tags
 ## Technology used
 
-The application was built using:
+***The application was built using:***
 
 [node.js, v20.5.0](https://nodejs.org/en), an asynchronous, event-driven JavaScript runtime designed to build scalable network applications
 
@@ -59,38 +59,65 @@ The application was built using:
 
 [insomnia](https://insomnia.rest/) a GUI that provides an easy to use interface that supports designing, debugging and testiing APIs
 
-[cURL](https://curl.se/), "client URL" command line tools and libraries for transferring data with URLs
+[cURL](https://curl.se/), "clientURL" command line tools and libraries for transferring data with URLs
+
+[json_pp](https://formulae.brew.sh/formula/jsonpp) a simple command line tool that pretty prints JSON data
 
 ## Installation, usage instructions and known issues
 
 <details>
-<summary> Expand for installation and usage instructions</summary>
+<summary> Expand for installation, configuration and usage instructions</summary>
 
-Users or contributors can run the application locally or in a hosted environment: 
+1.  **Clone the repository, set up the environment***
 
-1.  **Clone the repository, run the application using the command line**
-
-    • Clone the repository: `git@github.com:thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey.git`
+    • Clone the repository: `git clone git@github.com:thoughtsinbuttermilk/13-ModuleChallenge-ORMeCommerce-sambailey.git`
 
     • Install required frameworks, dependencies and packages by opening a terminal instance and running `npm install`
 
-    • [Open connections.js](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/employeeManagement/conections/connections.js) and add your SQL username, if not root, and password
+    • Open the project in your favorite code editor, create a .env file to configure the environment variables:
 
-    • Open the sources in your favorite code editor and use your favorite tool to open a connection to you MySql server
-
-    • [Open and execute the schema](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/2998f381bef1e6509b0e622bc35c9a5abb662197/db/schema.sql)
-
-    • [Open the seeds file and seed the database with the initial values](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/2998f381bef1e6509b0e622bc35c9a5abb662197/db/seeds.sql)
-
-    • In the `terminal`, navigate to the project directory where you cloned the sources, and run `npm start`
+    `DB_NAME='ecommerce_db'`
     
-    • After you admire the super duper cool 'splash screen', follow the prompts 
-
-    • Select `exit` or press `control+c` to close the application
-
-2. **Usage instructions**
+    `DB_USER='<*your user name*>'`
     
-    After the application makes a successful connection to the database and is running in the command line, you can select an option from the list to view or update the database:
+    `DB_PASSWORD='<*your password*>'`
+
+    • Add the .env file to your `.gitignore` file
+
+2. ***Configure the database environment***
+
+    • Connect to the mySQL shell:
+    
+     `mysql -u <username> -p <password>`
+
+     • Source the database:
+
+     `source db/schema.sql`
+
+     • Show available databases:
+
+     `show databases;`
+
+     • Select the ecommerce database:
+
+     `use ecommerce_db`
+
+     • Quit the mySQL shell
+
+     `\q`
+
+     • Seed the database
+
+     `npm run seed`
+
+     • Start the server
+
+     `npm start`
+
+    The server should be running and available at http://127.0.0.1:3001
+
+3. ***Usage instructions***
+    
 
     **main menu**
 
