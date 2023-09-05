@@ -79,6 +79,27 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// BONUS! put for category name update
+router.put("/", (req, res) => {
+  // update a category by its `category_name` value
+  Category.update(req.body, {
+    where: {
+      category_name: req.params.id,
+    },
+  })
+    .then((categoryData) => {
+      if (!categoryData) {
+        res.status(404).json({ message: "category not found" });
+        return;
+      }
+      res.json(categoryData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.delete("/:id", (req, res) => {
   // delete a category by its `id` value
   Category.destroy({
