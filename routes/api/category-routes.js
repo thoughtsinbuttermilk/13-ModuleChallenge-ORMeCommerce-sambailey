@@ -68,7 +68,7 @@ router.put("/:id", (req, res) => {
   })
     .then((categoryData) => {
       if (!categoryData) {
-        res.status(404).json({ message: "category not found" });
+        res.status(404).json({ message: "category not found with this id" });
         return;
       }
       res.json(categoryData);
@@ -89,7 +89,7 @@ router.put("/", (req, res) => {
   })
     .then((categoryData) => {
       if (!categoryData) {
-        res.status(404).json({ message: "category not found" });
+        res.status(404).json({ message: "category not found with this name" });
         return;
       }
       res.json(categoryData);
@@ -109,7 +109,7 @@ router.delete("/:id", (req, res) => {
   })
     .then((categoryData) => {
       if (!categoryData) {
-        res.status(404).json({ message: "category not found" });
+        res.status(404).json({ message: "category not found with this id" });
         return;
       }
       res.json(categoryData);
